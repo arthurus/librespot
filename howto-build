@@ -1,0 +1,13 @@
+1. router
+
+. ~/bin/sdk_openwrt-musl.sh
+
+rustup update
+cargo build --target=mips-unknown-linux-musl --no-default-features --features "with-tremor alsa-backend with-dns-sd" --release
+
+# if some dependencies don't build, do this and retry:
+rm Cargo.lock
+
+2. raspberry pi
+
+cross build --target aarch64-unknown-linux-gnu --no-default-features --features "rustls-tls-native-roots with-libmdns pulseaudio-backend" --release
